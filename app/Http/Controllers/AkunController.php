@@ -14,6 +14,7 @@ class AkunController extends Controller
     {
         return view('page.admin.akun.index');
     }
+    
 
     public function dataTable(Request $request)
     {
@@ -116,6 +117,33 @@ class AkunController extends Controller
             return redirect()->route('akun.add')->with('status', 'Data telah tersimpan di database');
         }
         return view('page.admin.akun.addAkun');
+    }
+    public function barang(Request $request){
+        if ($request->isMethod('post')) {
+
+            $this->validate($request, [
+                'nama_alat' => 'required|string|max:200|min:3',
+                'jenis_alat' => 'required|string|max:200|min:3',
+                'kode_alat' => 'required|string|max:200|min:3',  
+            ]);
+            
+            return redirect()->route('akun.barang')->with('status', 'Data telah tersimpan di database');
+        }
+        return view('page.admin.akun.barang');
+    }
+
+    public function dataalat(Request $request){
+        if ($request->isMethod('post')) {
+
+            $this->validate($request, [
+                'nama_alat' => 'required|string|max:200|min:3',
+                'jenis_alat' => 'required|string|max:200|min:3',
+                'kode_alat' => 'required|string|max:200|min:3',  
+            ]);
+            
+            return redirect()->route('akun.dataalat')->with('status', 'Data telah tersimpan di database');
+        }
+        return view('page.admin.akun.dataalat');
     }
 
     public function ubahAkun($id, Request $request)

@@ -30,6 +30,7 @@ class HomeController extends Controller
         return view('home');
     }
 
+
     public function profile()
     {
         return view('page.admin.profile');
@@ -70,5 +71,7 @@ class HomeController extends Controller
             ]);
             return redirect()->route('profile')->with('status', 'Perubahan telah tersimpan');
         }
+
     }
+   
 }

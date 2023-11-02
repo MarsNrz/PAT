@@ -20,6 +20,16 @@ $links = [
                 "section_text" => "Tambah Akun",
                 "section_icon" => "far fa-circle",
                 "section_href" => route('akun.add')
+            ],
+            [
+                "section_text" => "list barang",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('akun.barang')
+            ],
+            [
+                "section_text" => "data alat",
+                "section_icon" => "far fa-circle",
+                "section_href" => route('akun.dataalat')
             ]
         ]
     ]
