@@ -29,6 +29,8 @@
             @include('layouts.components.footer')
 
             @include('layouts.components.control_sidebar')
+           
+            
         </div>
         <!-- ./wrapper -->
 

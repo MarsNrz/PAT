@@ -19,8 +19,8 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('layouts/base_admin/base_dashboard');
+})->name('home');
 
 Auth::routes();
 

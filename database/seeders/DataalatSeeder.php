@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class dataalat extends Seeder
+class Dataalat extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class dataalat extends Seeder
      */
     public function run()
     {
-        DB::table('data_alat')->insert([
+        DB::table('data_barang')->insert([
             'namaalat' =>'kabel',
             'jenisalat'=>'listrik',
             'kodealat'=>'alat',

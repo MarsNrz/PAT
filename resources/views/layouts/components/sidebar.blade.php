@@ -32,7 +32,11 @@ $links = [
                 "section_href" => route('akun.dataalat')
             ]
         ]
+       
     ]
+
+    
+   
 ];
 $navigation_links = json_decode(json_encode($links));
 @endphp
