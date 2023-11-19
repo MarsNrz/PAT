@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+
 
 
 
@@ -17,35 +16,6 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('layouts/base_admin/base_dashboard');
+    return view('Home');
 })->name('home');
-
-Auth::routes();
-
-Route::group(['prefix' => 'dashboard/admin'], function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-
-    Route::group(['prefix' => 'profile'], function () {
-        Route::get('/', [HomeController::class, 'profile'])->name('profile');
-        Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');
-    });
-   
-    
-
-    Route::controller(AkunController::class)
-        ->prefix('akun')
-        ->as('akun.')
-        ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::post('showdata', 'dataTable')->name('dataTable');
-            Route::match(['get','post'],'tambah', 'tambahAkun')->name('add');
-            Route::match(['get','post'],'barang', 'barang')->name('barang');
-            Route::match(['get','post'],'dataalat', 'dataalat')->name('dataalat');
-            Route::match(['get','post'],'{id}/ubah', 'ubahAkun')->name('edit');
-            Route::delete('{id}/hapus', 'hapusAkun')->name('delete');
-        });
-
-       
-});
