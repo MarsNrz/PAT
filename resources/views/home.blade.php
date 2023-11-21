@@ -31,16 +31,14 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Data Akun</a>
-              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Admin
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="#">Data Alat</a></li>
-                  <li><a class="dropdown-item" href="#">Data Akun</a></li>
+                  <li><a class="dropdown-item" href="">Data Akun</a></li>
+                  <li><a class="dropdown-item" href="/dataAlat">Data Alat</a></li>
+                  <li><a class="dropdown-item" href="#">Data Pinjam</a></li>
                   <li><a class="dropdown-item" href="#">Data Keluhan</a></li>
                 </ul>
               </li>
