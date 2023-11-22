@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('data_alats', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
+            $table->id('id_admin');
+            $table->string('username');
+            $table->string('nama_lengkp');
+            $table->integer('nim');
+            $table->string('email');
+            $table->bigInteger('password');
+
             $table->timestamps();
-            $table->id('id_alat', 11)->unique();
-            $table->string('nama_alat', 50);
-            $table->string('jenis_alat', 30);
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_alats');
+        Schema::dropIfExists('admins');
     }
 };

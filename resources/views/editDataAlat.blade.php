@@ -18,7 +18,7 @@
                          @csrf
                             <div class="mb-3">
                               <label for="text" class="form-label">Nama Alat</label>
-                              <input type="text" name="nama_alat" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->nama_alat}}">
+                              <input type="text" name="nama_alat" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->nama_akun}}">
                             </div>
                             <div class="mb-3">
                               <label for="text" class="form-label">Jenis Alat</label>

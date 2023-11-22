@@ -29,3 +29,10 @@ Route::get('/editDataAlat/{id_alat}', [DataAlatController::class, 'editDataAlat'
 Route::post('/updateDataAlat/{id_alat}', [DataAlatController::class, 'updateDataAlat'])->name('updateDataAlat');
 
 Route::get('/deleteDataAlat/{id_alat}', [DataAlatController::class, 'deleteDataAlat'])->name('deleteDataAlat');
+
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::get('/tambahadmin', [AdminController::class, 'tambahadmin'])->name('tambahadmin');
+Route::post('/insertadmin', [AdminController::class, 'insertadmin'])->name('insertadmin');
+Route::get('/deleteadmin/{id_admin}', [AdminController::class, 'deleteadmin'])->name('deleteadmin');
+Route::get('/editadmin/{id_admin}', [AdminController::class, 'editadmin'])->name('editadmin');
+Route::post('/updateadmin/{id_admin}', [AdminController::class, 'updateadmin'])->name('updateadmin');

@@ -36,7 +36,7 @@
                   Admin
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="">Data Akun</a></li>
+                  <li><a class="dropdown-item" href="/admin">Data Akun</a></li>
                   <li><a class="dropdown-item" href="/dataAlat">Data Alat</a></li>
                   <li><a class="dropdown-item" href="#">Data Pinjam</a></li>
                   <li><a class="dropdown-item" href="#">Data Keluhan</a></li>
