@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataAlatController;
+use App\Http\Controllers\DataAkunController;
 
 
 /*
@@ -30,9 +31,9 @@ Route::post('/updateDataAlat/{id_alat}', [DataAlatController::class, 'updateData
 
 Route::get('/deleteDataAlat/{id_alat}', [DataAlatController::class, 'deleteDataAlat'])->name('deleteDataAlat');
 
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-Route::get('/tambahadmin', [AdminController::class, 'tambahadmin'])->name('tambahadmin');
-Route::post('/insertadmin', [AdminController::class, 'insertadmin'])->name('insertadmin');
-Route::get('/deleteadmin/{id_admin}', [AdminController::class, 'deleteadmin'])->name('deleteadmin');
-Route::get('/editadmin/{id_admin}', [AdminController::class, 'editadmin'])->name('editadmin');
-Route::post('/updateadmin/{id_admin}', [AdminController::class, 'updateadmin'])->name('updateadmin');
+Route::get('/dataAkun', [DataAkunController::class, 'akun'])->name('akun');
+Route::get('/register', [DataAkunController::class, 'tambahAkun'])->name('tambahDataAkun');
+Route::post('/insertAkun', [DataAkunController::class, 'insertAkun'])->name('insertDataAkun');
+Route::get('/deleteAkun/{id_akun}', [DataAkunController::class, 'deleteAkun'])->name('deleteDataAkun');
+Route::get('/editAkun/{id_akun}', [DataAkunController::class, 'editAkun'])->name('editDataAkun');
+Route::post('/updateAkun/{id_akun}', [DataAkunController::class, 'updateAkun'])->name('updateDataAkun');

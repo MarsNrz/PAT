@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class adminSeeder extends Seeder
+class DataAkunSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,9 @@ class adminSeeder extends Seeder
      */
     public function run()
     {
-    DB::table('admins')->insert([
+    DB::table('data_akuns')->insert([
         'username'=>'berlian',
-        'nama_lengkp'=>'claudia',
+        'nama_lengkap'=>'claudia',
         'nim'=>'221511008',
         'email'=>'claudia@gmail.com',
         'password'=>'123456',

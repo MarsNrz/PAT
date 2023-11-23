@@ -9,15 +9,15 @@
 <body>
 
     <div class="container mt-4">
-        <h1 class="text-center">List Alat</h1>
-        <a href="/tambahadmin" type="button" class="btn btn-success mb-3" onclick="tampilkanForm()">Tambah Akun</a>
+        <h1 class="text-center">Data Akun</h1>
+        <a href="/tambahAkun" type="button" class="btn btn-success mb-3" onclick="tampilkanForm()">Tambah Akun</a>
         <table class="table">
             <thead class="table-dark">
                 <tr>
                     <th>ID akun</th>
                     <th>Username</th>
                     <th>Nama Lengkap</th>
-                    <th>Lengkap</th>
+                    <th>NIM</th>
                     <th>Email</th>
                     <th>Password</th>
                     <th>Edit/Delete</th>
@@ -31,15 +31,15 @@
                  <tr>
                     <th>{{$no++ }}</th>
                     <td>{{$row->username}}</td>
-                    <td>{{$row->nama_lengkp}}</td>
+                    <td>{{$row->nama_lengkap}}</td>
                     <td>{{$row->nim}}o</td>
                     <td>{{$row->email}}</td>
                     <td>{{$row->password}}</td>
                     
                     <td>
                         <div>
-                            <a href="/editadmin/{{$row->id_admin}}" class="btn btn-primary">Edit</a>
-                            <a href="/deleteadmin/{{$row->id_admin}}" class="btn btn-danger">Delete</a>
+                            <a href="/editAkun/{{$row->id_akun}}" class="btn btn-primary">Edit</a>
+                            <a href="/deleteAkun/{{$row->id_akun}}" class="btn btn-danger">Delete</a>
                         </div>
                     </td>
                 </tr>
