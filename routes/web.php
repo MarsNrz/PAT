@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataAlatController;
 use App\Http\Controllers\DataAkunController;
+use App\Http\Controllers\KeluhanController;
 
 
 /*
@@ -37,3 +38,10 @@ Route::post('/insertAkun', [DataAkunController::class, 'insertAkun'])->name('ins
 Route::get('/deleteAkun/{id_akun}', [DataAkunController::class, 'deleteAkun'])->name('deleteDataAkun');
 Route::get('/editAkun/{id_akun}', [DataAkunController::class, 'editAkun'])->name('editDataAkun');
 Route::post('/updateAkun/{id_akun}', [DataAkunController::class, 'updateAkun'])->name('updateDataAkun');
+
+Route::get('/dataKeluhan', [KeluhanController::class, 'keluhan'])->name('keluhan');
+Route::get('/tambahDataKeluhan', [KeluhanController::class, 'tambahDataKeluhan'])->name('tambahDataKeluhan');
+Route::post('/insertDataKeluhan', [KeluhanController::class, 'insertDataKeluhan'])->name('insertDataKeluhan');
+Route::get('/deleteDataKeluhan/{id_keluhan}', [KeluhanController::class, 'deleteDataKeluhan'])->name('deleteDataKeluhan');
+Route::get('/editDataKeluhan/{id_keluhan}', [KeluhanController::class, 'editDataKeluhan'])->name('editDataKeluhan');
+Route::post('/updateDataKeluhan/{id_keluhan}', [KeluhanController::class, 'updateDataKeluhan'])->name('updateDataKeluhan');
