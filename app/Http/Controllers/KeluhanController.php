@@ -42,5 +42,16 @@ class KeluhanController extends Controller
         $data->delete();
         return redirect()->route('keluhan')->with('success', 'Data berhasil dihapus');
     }
-    
+    public function akunJson()
+    {
+        $user = keluhan::all();
+        return DataTables::of($data)
+            ->addColumn('action', function ($item) {
+                $btnEdit = '<a href="/editAkun/'.$item->id_akun.'" class="btn btn-primary">Edit</a>';
+                $btnDelete = '<a href="/deleteAkun/'.$item->id_akun.'" class="btn btn-danger">Delete</a>';
+                return $btnEdit.$btnDelete;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
 }

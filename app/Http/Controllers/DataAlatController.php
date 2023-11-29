@@ -43,4 +43,22 @@ class DataAlatController extends Controller
         $data->delete();
         return redirect()->route('Alat')->with('success', 'Data berhasil dihapus');
     }
+   
+    public function akunJson()
+    {
+        $user = dataAlat::all();
+        return DataTables::of($data)
+            ->addColumn('action', function ($item) {
+                $btnEdit = '<a href="/editAlat/'.$item->id_akun.'" class="btn btn-primary">Edit</a>';
+                $btnDelete = '<a href="/deleteAlat/'.$item->id_akun.'" class="btn btn-danger">Delete</a>';
+                return $btnEdit.$btnDelete;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    public function home()
+    {
+        return view ('home');
+    }
 }

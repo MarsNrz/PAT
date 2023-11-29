@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\dataAkun;
 use Illuminate\Http\Request;
-;
+use DataTables;
 
 class DataAkunController extends Controller
 {
     public function akun()
     {
-        $data = dataAkun::all();
-        return view('dataAkun',compact('data'));
+        $users = dataAkun::all(); 
+        return view('dataAkun', compact('users')); 
     }
     public function tambahAkun()
     {
@@ -25,25 +25,38 @@ class DataAkunController extends Controller
     }
     public function deleteAkun(Request $request, $id_akun)
     {
-        $data = dataAkun::find($id_akun);
-        $data->delete();
+        $user = dataAkun::find($id_akun);
+        $user->delete();
         return redirect()->route('akun')->with('success', 'Data berhasil dihapus');
     }
-    public function editAkun($id_akun){
-        $data = dataAkun::find($id_akun);
-        // dd($data);
+    public function editAkun($id_akun)
+{
+    $user = dataAkun::find($id_akun);
+    return view('editDataAkun', compact('user'));
+}
 
-        return view('editDataAkun',compact('data'));
-    }
     public function updateAkun(Request $request, $id_akun)
     {
-        $data = dataAkun::find($id_akun);
-        $data->username = $request->input('username');
-        $data->nama_lengkap = $request->input('nama_lengkap');
-        $data->nim= $request->input('nim');
-        $data->email= $request->input('email');
-        $data->password= $request->input('password');
-        $data->save();
+        $user = dataAkun::find($id_akun);
+        $user->username = $request->input('username');
+        $user->nama_lengkap = $request->input('nama_lengkap');
+        $user->nim= $request->input('nim');
+        $user->email= $request->input('email');
+        $user->password= $request->input('password');
+        $user->save();
         return redirect()->route('akun')->with('success', 'Data berhasil di Update');
+    }
+
+    public function akunJson()
+    {
+        $user = dataAkun::all();
+        return DataTables::of($user)
+            ->addColumn('action', function ($item) {
+                $btnEdit = '<a href="/editAkun/'.$item->id_akun.'" class="btn btn-primary">Edit</a>';
+                $btnDelete = '<a href="/deleteAkun/'.$item->id_akun.'" class="btn btn-danger">Delete</a>';
+                return $btnEdit.$btnDelete;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 }

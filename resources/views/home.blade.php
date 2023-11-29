@@ -44,6 +44,7 @@
               </li>
             </ul>
             <form class="d-flex mt-3" role="search">
+              
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-success" type="submit">Search</button>
             </form>
@@ -51,6 +52,17 @@
         </div>
       </div>
     </nav>
+    <div class="offcanvas-header text-center">
+      <h1 class="offcanvas-title mb-0" id="offcanvasDarkNavbarLabel" style="font-size: 50px; text-align: center; padding: 30px 300px;">Welcome Peminjaman Alat Teknisi</h1>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+      <img src="/image/gambar.png" alt="Deskripsi gambar" style="max-width: 50%; height: auto; padding: 10px;">
+  </div>
+  
+  
+  </div>
+  
+    
 </div>
     <!-- End Example Code -->
   </body>

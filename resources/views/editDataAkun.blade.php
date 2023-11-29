@@ -14,27 +14,27 @@
             <div class="div col-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/updateAkun/{{$data->id_akun}}" method="POST" enctype="multipart/form-data">
+                      <form action="{{ route('updateDataAkun', ['id_akun' => $user->id_akun]) }}" method="POST" enctype="multipart/form-data">
                          @csrf
                             <div class="mb-3">
                               <label for="text" class="form-label">Username</label>
-                              <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->username}}">
+                              <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$user->username}}">
                             </div>
                             <div class="mb-3">
                               <label for="text" class="form-label">Nama Lengkap</label>
-                              <input type="text" name="nama_lengkap" class="form-control" id="exampleInputPassword1" value="{{$data->nama_lengkap}}">
+                              <input type="text" name="nama_lengkap" class="form-control" id="exampleInputPassword1" value="{{$user->nama_lengkap}}">
                             </div>
                             <div class="mb-3">
                                 <label for="text" class="form-label">Nim</label>
-                                <input type="text" name="nim" class="form-control" id="exampleInputPassword1" value="{{$data->nim}}">
+                                <input type="text" name="nim" class="form-control" id="exampleInputPassword1" value="{{$user->nim}}">
                               </div>
                               <div class="mb-3">
                                 <label for="text" class="form-label">Email</label>
-                                <input type="text" name="email" class="form-control" id="exampleInputPassword1" value="{{$data->email}}">
+                                <input type="text" name="email" class="form-control" id="exampleInputPassword1" value="{{$user->email}}">
                               </div>
                               <div class="mb-3">
                                 <label for="text" class="form-label">Password</label>
-                                <input type="text" name="password" class="form-control" id="exampleInputPassword1" value="{{$data->password}}">
+                                <input type="text" name="password" class="form-control" id="exampleInputPassword1" value="{{$user->password}}">
                               </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                           </form>
