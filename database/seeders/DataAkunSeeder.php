@@ -18,9 +18,11 @@ class DataAkunSeeder extends Seeder
     DB::table('data_akuns')->insert([
         'username'=>'berlian',
         'nama_lengkap'=>'claudia',
+        'prodi'=>'D3',
         'nim'=>'221511008',
         'email'=>'claudia@gmail.com',
         'password'=>'123456',
+    
     ]);
     }
 }

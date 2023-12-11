@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataAlatController;
 use App\Http\Controllers\DataAkunController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\KeluhanController;
 use App\Models\User;
 
@@ -47,16 +48,14 @@ Route::get('/deleteDataAlat/{id_alat}', [DataAlatController::class, 'deleteDataA
 Route::get('/akun.json', 'DataAlatController@akunJson')->name('akun.json');
 
 
-
 Route::get('/dataAkun', [DataAkunController::class, 'akun'])->name('akun');
 Route::get('/register', [DataAkunController::class, 'tambahAkun'])->name('tambahDataAkun');
 Route::post('/insertAkun', [DataAkunController::class, 'insertAkun'])->name('insertDataAkun');
 Route::get('/deleteAkun/{id_akun}', [DataAkunController::class, 'deleteAkun'])->name('deleteDataAkun');
 Route::get('/editAkun/{id_akun}', [DataAkunController::class, 'editAkun'])->name('editDataAkun');
 Route::post('/updateAkun/{id_akun}', [DataAkunController::class, 'updateAkun'])->name('updateDataAkun');
+Route::get('/tambahdataAkun', [DataAkunController::class, 'index'])->name('tambahdataAkun');
 Route::get('/akun.json', 'DataAkunController@akunJson')->name('akun.json');
-
-
 
 Route::get('/dataKeluhan', [KeluhanController::class, 'keluhan'])->name('keluhan');
 Route::get('/tambahDataKeluhan', [KeluhanController::class, 'tambahDataKeluhan'])->name('tambahDataKeluhan');

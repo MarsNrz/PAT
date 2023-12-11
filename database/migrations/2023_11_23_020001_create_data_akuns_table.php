@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('data_akuns', function (Blueprint $table) {
                 $table->id('id_akun')->unique();
-                $table->string('username');
                 $table->string('nama_lengkap');
                 $table->integer('nim');
                 $table->string('email');

@@ -16,18 +16,14 @@
                     <div class="card-body">
                       <form action="{{ route('updateDataAkun', ['id_akun' => $user->id_akun]) }}" method="POST" enctype="multipart/form-data">
                          @csrf
-                            <div class="mb-3">
-                              <label for="text" class="form-label">Username</label>
-                              <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$user->username}}">
-                            </div>
-                            <div class="mb-3">
-                              <label for="text" class="form-label">Nama Lengkap</label>
-                              <input type="text" name="nama_lengkap" class="form-control" id="exampleInputPassword1" value="{{$user->nama_lengkap}}">
-                            </div>
-                            <div class="mb-3">
+
+                                <div class="mb-3">
+                                  <label for="text" class="form-label">Nama Lengkap</label>
+                                  <input type="text" name="nama_lengkap" class="form-control" id="exampleInputPassword1" value="{{$user->nama_lengkap}}">
+                                </div>                         <div class="mb-3">
                                 <label for="text" class="form-label">Nim</label>
                                 <input type="text" name="nim" class="form-control" id="exampleInputPassword1" value="{{$user->nim}}">
-                              </div>
+                              </div> 
                               <div class="mb-3">
                                 <label for="text" class="form-label">Email</label>
                                 <input type="text" name="email" class="form-control" id="exampleInputPassword1" value="{{$user->email}}">

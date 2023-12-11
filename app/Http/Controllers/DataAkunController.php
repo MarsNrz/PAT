@@ -14,15 +14,37 @@ class DataAkunController extends Controller
         $users = dataAkun::all(); 
         return view('dataAkun', compact('users')); 
     }
+
     public function tambahAkun()
     {
         return view('tambahDataAkun');
     }
     public function insertAkun(Request $request)
     {
-        dataAkun::create($request->all());
-        return redirect()->route('akun')->with ('success', 'Data berhasil di Tambahkan');
+        // Validasi request untuk data tanpa file 'Fotoprofil' dan 'Fotoktm'
+        $validatedData = $request->validate([
+            'nama_lengkap' => 'required',
+            'nim' => 'required|numeric',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+    
+        // Buat instansiasi model dataAkun dan isi propertinya dari request
+        $user = new dataAkun();
+        $user->nama_lengkap = $validatedData['nama_lengkap'];
+        $user->nim = $validatedData['nim'];
+        $user->email = $validatedData['email'];
+        $user->password = $validatedData['password'];
+    
+        // Simpan model ke dalam database
+        $user->save();
+    
+        // Redirect ke halaman 'akun' dengan pesan sukses
+        return redirect()->route('akun')->with('success', 'Data berhasil ditambahkan');
     }
+    
+
+
     public function deleteAkun(Request $request, $id_akun)
     {
         $user = dataAkun::find($id_akun);
@@ -32,31 +54,42 @@ class DataAkunController extends Controller
     public function editAkun($id_akun)
 {
     $user = dataAkun::find($id_akun);
+
+    if (!$user) {
+        return redirect()->route('akun')->with('error', 'Data tidak ditemukan');
+    }
+
     return view('editDataAkun', compact('user'));
 }
 
-    public function updateAkun(Request $request, $id_akun)
-    {
-        $user = dataAkun::find($id_akun);
-        $user->username = $request->input('username');
-        $user->nama_lengkap = $request->input('nama_lengkap');
-        $user->nim= $request->input('nim');
-        $user->email= $request->input('email');
-        $user->password= $request->input('password');
-        $user->save();
-        return redirect()->route('akun')->with('success', 'Data berhasil di Update');
+   
+public function updateAkun(Request $request, $id_akun)
+{
+    $user = dataAkun::find($id_akun);
+    if (!$user) {
+        return redirect()->back()->with('error', 'Data tidak ditemukan');
     }
 
-    public function akunJson()
-    {
-        $user = dataAkun::all();
-        return DataTables::of($user)
-            ->addColumn('action', function ($item) {
-                $btnEdit = '<a href="/editAkun/'.$item->id_akun.'" class="btn btn-primary">Edit</a>';
-                $btnDelete = '<a href="/deleteAkun/'.$item->id_akun.'" class="btn btn-danger">Delete</a>';
-                return $btnEdit.$btnDelete;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
+    $validatedData = $request->validate([
+        'nama_lengkap' => 'required',
+        'nim' => 'required|numeric',
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    $user->nama_lengkap = $validatedData['nama_lengkap'];
+    $user->nim = $validatedData['nim'];
+    $user->email = $validatedData['email'];
+    $user->password = $validatedData['password'];
+
+    $user->save();
+
+    return redirect()->route('editDataAkun', $id_akun)->with('success', 'Data berhasil diperbarui');
 }
+
+}
+
+
+
+
+
