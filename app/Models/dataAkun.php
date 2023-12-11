@@ -14,16 +14,18 @@ class dataAkun extends Model
 
     protected $fillable = [
         'id_akun',
-        'username',
         'nama_lengkap',
         'nim',
         'email',
         'password',
-        'fotoprofil',
-        'fotoktm'
     ]; // Kolom-kolom yang dapat diisi
 
     public $timestamps = true; // Aktifkan timestamps (created_at dan updated_at)
 
-    // Jika Anda memiliki relasi dengan model lain, Anda dapat mendefinisikannya di sini
+
 }
+
+    
+
+
+

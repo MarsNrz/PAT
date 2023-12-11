@@ -11,7 +11,7 @@
     <div class="container mt-4">
         <h1 class="text-center">Data Akun</h1> 
         <a href="/register" type="button" class="btn btn-success mb-3">Tambah Akun</a>
-        <table id="tabelAkun" class="table display">
+        <table id="tabelAkun" class="table table-bordered yajra-datatables">
             <thead class="table-dark">
                 <tr>
                     <th>ID akun</th>
@@ -22,38 +22,80 @@
                     <th>Edit/Delete</th>
                 </tr>
             </thead>
-            <tbody>
-                @php
-                $no = 1;
-                @endphp
-                @foreach ($users as $user)
-                    <tr>
-                        <td>{{$no++}}</td>
-                        <td>{{$user->nama_lengkap}}</td>
-                        <td>{{$user->nim}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->password}}</td>
-                        
-                        <td>
-                            <div>
-                                <a href="{{ route('editDataAkun', ['id_akun' => $user->id_akun]) }}" class="btn btn-primary">Edit</a>
-                                <a href="{{ route('deleteDataAkun', ['id_akun' => $user->id_akun]) }}" class="btn btn-danger">Delete</a> 
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
             </tbody>
         </table>
     </div>
 
     <!-- Tautan ke file JavaScript Bootstrap dan jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#tabelAkun').DataTable();
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+    $(function(){
+        var table = $('#tabelAkun').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('dat.dataAkun') !!}',
+            columns: [
+                { data: 'id_akun', name: 'id_akun' },
+                { data: 'nama_lengkap', name: 'nama_lengkap' },
+                { data: 'nim', name: 'nim' },
+                { data: 'email', name: 'email' },
+                { data: 'password', name: 'password' },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true,
+                },
+            ]
         });
-    </script>
+
+        $(document).on('click', '.delete', function(){
+            var id_akun = $(this).data("id_akun");
+            if(confirm("Anda yakin ingin menghapus data akun ini?")) {
+                $.ajax({
+                  url: "{{ route('deleteDataAkun', ['id_akun' => '__id_akun__']) }}".replace('__id_akun__', id_akun),
+                    method: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success:function(data)
+                    {
+                        $('#tabelAkun').DataTable().ajax.reload();
+                        alert('Data berhasil dihapus');
+                    }
+                });
+            }
+        });
+    });
+</script>
+    
+     {{-- <script>
+         $(function(){
+             var table = $('#tabelAkun').DataTable({
+                 processing: true,
+                 serverSide: true,
+                 ajax: '{!! route('dat.dataAkun') !!}',
+                 columns: [
+                     { data: 'id', name: 'id' },
+                     { data: 'nama_lengkap', name: 'nama_lengkap' },
+                     { data: 'nim', name: 'nim' },
+                     { data: 'email', name: 'email' },
+                     { data: 'password', name: 'password' },
+                     {
+                         data: 'action',
+                         name: 'action',
+                         orderable: true,
+                         searchable: true,
+                     },
+                 ]
+             });
+         });
+
+          
+     </script>  --}}
 </body>
 </html>

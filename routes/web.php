@@ -48,14 +48,20 @@ Route::get('/deleteDataAlat/{id_alat}', [DataAlatController::class, 'deleteDataA
 Route::get('/akun.json', 'DataAlatController@akunJson')->name('akun.json');
 
 
+
 Route::get('/dataAkun', [DataAkunController::class, 'akun'])->name('akun');
+Route::get('/dat/dataAkun', [DataAkunController::class, 'getDataAkun'])->name('dat.dataAkun');
 Route::get('/register', [DataAkunController::class, 'tambahAkun'])->name('tambahDataAkun');
 Route::post('/insertAkun', [DataAkunController::class, 'insertAkun'])->name('insertDataAkun');
-Route::get('/deleteAkun/{id_akun}', [DataAkunController::class, 'deleteAkun'])->name('deleteDataAkun');
-Route::get('/editAkun/{id_akun}', [DataAkunController::class, 'editAkun'])->name('editDataAkun');
-Route::post('/updateAkun/{id_akun}', [DataAkunController::class, 'updateAkun'])->name('updateDataAkun');
+Route::get('/akun', 'DataAkunController@akun')->name('akun');
+Route::get('/edit/{id_akun}', 'DataAkunController@editAkun')->name('editDataAkun');
+Route::post('/update/{id_akun}', 'DataAkunController@updateAkun')->name('updateDataAkun');
 Route::get('/tambahdataAkun', [DataAkunController::class, 'index'])->name('tambahdataAkun');
-Route::get('/akun.json', 'DataAkunController@akunJson')->name('akun.json');
+Route::post('/deleteAkun/{id_akun}', 'DataAkunController@deleteAkun')->name('deleteDataAkun');
+
+
+
+
 
 Route::get('/dataKeluhan', [KeluhanController::class, 'keluhan'])->name('keluhan');
 Route::get('/tambahDataKeluhan', [KeluhanController::class, 'tambahDataKeluhan'])->name('tambahDataKeluhan');
