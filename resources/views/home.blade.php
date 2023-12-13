@@ -52,12 +52,16 @@
       </div>
     </nav>
     <div class="offcanvas-header text-center">
-      <h1 class="offcanvas-title mb-0" id="offcanvasDarkNavbarLabel" style="font-size: 50px; text-align: center; padding: 30px 300px;">Welcome to Peminjaman Alat Teknis</h1>
+      <h1 class="offcanvas-title mb-0" id="offcanvasDarkNavbarLabel" style="font-size: 50px; text-align: center; padding: 10px 300px;">Welcome to Peminjaman Alat Teknis</h1>
       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+ 
+    <div style="text-align: right;">
+      <img src="/image/gambar.png" alt="Deskripsi gambar" style="width: 800px; height: auto; float: right; margin: -100px 300px ;">
 
-      <img src="/image/gambar.png" alt="Deskripsi gambar" style="max-width: 50%; height: auto; padding: 10px;">
   </div>
   
+ 
   
   </div>
   

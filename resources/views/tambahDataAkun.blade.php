@@ -43,8 +43,8 @@
                                 
                               
                             </div>
-                            <a href="/login" style="color: black; font-weight:bold;">SIGN IN</a>
-                            {{-- <button type="submit" class="btn btn-primary" onclick="window.location.href='/login'">Simpan</button> --}}
+                            <a href="/login" style="color: black; font-weight:bold;">SIGN IN</a> 
+                            {{-- <button type="submit" class="btn btn-primary" onclick="window.location.href='/login'">Simpan</button>  --}}
                             </form>
                           </form>
                     </div>

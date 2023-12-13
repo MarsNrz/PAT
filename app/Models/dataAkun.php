@@ -1,11 +1,12 @@
 <?php
+// app/Models/DataAkun.php
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class dataAkun extends Model
+class DataAkun extends Model
 {
     use HasFactory;
 
@@ -13,17 +14,17 @@ class dataAkun extends Model
     protected $primaryKey = 'id_akun'; // Nama kolom kunci utama
 
     protected $fillable = [
-        'id_akun',
+        'Fotoktm',
         'nama_lengkap',
         'nim',
         'email',
         'password',
+        'Fotoprofil',
     ]; // Kolom-kolom yang dapat diisi
 
     public $timestamps = true; // Aktifkan timestamps (created_at dan updated_at)
-
-
 }
+
 
     
 
