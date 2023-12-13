@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataAlatController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataAkunController;
 use App\Http\Controllers\KeluhanController;
 use App\Models\User;
@@ -20,7 +21,7 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('home',[
+    return view('login',[
     ]);
     
 })->name('home');
@@ -54,6 +55,8 @@ Route::get('/edit/{id_akun}', 'DataAkunController@editAkun')->name('editDataAkun
 Route::post('/update/{id_akun}', 'DataAkunController@updateAkun')->name('updateDataAkun');
 Route::get('/tambahdataAkun', [DataAkunController::class, 'index'])->name('tambahdataAkun');
 Route::delete('/delete-data/{id_akun}', 'DataAkunController@deleteDataAkun')->name('deleteDataAkun');
+Route::get('/login', [DataAkunController::class, 'login'])->name('login');
+Route::post('/loginproses',[DataAkunController::class,'loginproses'])->name('loginproses');
 
 
 /* Data Keluhan */

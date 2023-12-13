@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\dataAkun;
 use Illuminate\Http\Request;
 use DataTables;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class DataAkunController extends Controller
 {
@@ -55,10 +58,13 @@ class DataAkunController extends Controller
     {
         try {
             $validatedData = $request->validate([
+                'Fotoprofil' => 'required',
                 'nama_lengkap' => 'required',
                 'nim' => 'required|numeric',
                 'email' => 'required|email',
-                'password' => 'required|numeric',
+                'password' => 'required',
+                'Fotoktm' => 'required',
+                
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Handle validation errors
@@ -66,11 +72,12 @@ class DataAkunController extends Controller
         }
 
         $data = new dataAkun();
-
+        $data->Fotoprofil = $validatedData['Fotoprofil'];
         $data->nama_lengkap = $validatedData['nama_lengkap'];
         $data->nim = $validatedData['nim'];
         $data->email = $validatedData['email'];
-        $data->password = bcrypt($validatedData['password']);
+        $data->password =($validatedData['password']);
+        $data->Fotoktm = ($validatedData['Fotoktm']);
 
         $data->save();
 
@@ -97,19 +104,53 @@ class DataAkunController extends Controller
         }
 
         $validatedData = $request->validate([
+            'Fotoprofil' => 'required',
             'nama_lengkap' => 'required',
             'nim' => 'required|numeric',
             'email' => 'required|email',
             'password' => 'required',
+            'Fotoktm' => 'required',
         ]);
-
+        $data->Fotoprofil = $validatedData['Fotoprofil'];
         $data->nama_lengkap = $validatedData['nama_lengkap'];
         $data->nim = $validatedData['nim'];
         $data->email = $validatedData['email'];
         $data->password = $validatedData['password'];
+        $data->Fotoktm = $validatedData['Fotoktm'];
 
         $data->save();
 
         return redirect()->route('akun')->with('success', 'Data berhasil diperbarui');
+    }
+    public function login(){
+        return view('login');
+    }
+    public function loginproses(Request $request)
+    {
+       
+        $credentials = $request->only('email', 'password');
+
+        // Validate that email and password are not empty
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ], [
+            'email.required' => 'Email is required!',
+            'email.email' => 'Invalid email format!',
+            'password.required' => 'Password is required!',
+        ]);
+        if (Auth::attempt($credentials)) {
+            return redirect('home');
+        }
+    
+        $user = User::where('email', $request->email);
+    
+        if ($user) {
+            // Incorrect password
+            return redirect('/login')->with('login_error', 'Invalid password. Please try again!');
+        }
+    
+        // Incorrect email
+        return redirect('/login')->with('login_error', 'Invalid email. Please try again!');
     }
 }

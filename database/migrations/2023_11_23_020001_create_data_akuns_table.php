@@ -14,14 +14,16 @@ return new class extends Migration
     
      public function up()
      {
-         Schema::create('data_akuns', function (Blueprint $table) {
-             $table->id('id_akun')->autoIncrement(); // Tambahkan autoIncrement(1)
-             $table->string('nama_lengkap');
-             $table->string('nim');
-             $table->string('email');
-             $table->string('password');
-             $table->timestamps();
-         });
+        Schema::create('data_akuns', function (Blueprint $table) {
+            $table->id('id_akun')->autoIncrement(); // Kolom ID yang diatur sebagai autoIncrement
+            $table->string('Fotoprofil');
+            $table->string('nama_lengkap');
+            $table->string('nim');
+            $table->string('email');
+            $table->string('password');
+            $table->string('Fotoktm');
+            $table->timestamps();
+        });
      }
      
         

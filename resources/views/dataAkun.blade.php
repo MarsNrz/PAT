@@ -17,10 +17,12 @@
             <thead class="table-dark">
                 <tr>
                     <th>ID akun</th>
+                    <th>Fotoprofil</th>
                     <th>Nama</th>
                     <th>NIM</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>Fotoktm</th>
                     <th>Edit/Delete</th>
                 </tr>
             </thead>
@@ -44,10 +46,12 @@ $(function () {
         ajax: '{!! route('dat.dataAkun') !!}',
         columns: [
             { data: 'id_akun', name: 'id_akun' },
+            { data: 'Fotoprofil', name: 'Fotoprofil' },
             { data: 'nama_lengkap', name: 'nama_lengkap' },
             { data: 'nim', name: 'nim' },
             { data: 'email', name: 'email' },
             { data: 'password', name: 'password' },
+            { data: 'Fotoktm', name: 'Fotoktm' },
             {
                 data: 'action',
                 name: 'action',
@@ -86,31 +90,6 @@ $(function () {
     });
 });
 
-    // Delete button click event
- 
-    // $(function(){
-    //     var table = $('#tabelAkun').DataTable({
-    //         processing: true,
-    //         serverSide: true,
-    //         ajax: '{!! route('dat.dataAkun') !!}',
-    //         columns: [
-    //             { data: 'id_akun', name: 'id_akun' },
-    //             { data: 'nama_lengkap', name: 'nama_lengkap' },
-    //             { data: 'nim', name: 'nim' },
-    //             { data: 'email', name: 'email' },
-    //             { data: 'password', name: 'password' },
-    //             {
-    //                 data: 'action',
-    //                 name: 'action',
-    //                 orderable: true,
-    //                 searchable: true,
-    //             },
-    //         ]
-    //     });
-
-      
-    // });
-    
 
    
 
