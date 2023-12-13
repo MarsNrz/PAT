@@ -57,7 +57,8 @@ Route::get('/akun', 'DataAkunController@akun')->name('akun');
 Route::get('/edit/{id_akun}', 'DataAkunController@editAkun')->name('editDataAkun');
 Route::post('/update/{id_akun}', 'DataAkunController@updateAkun')->name('updateDataAkun');
 Route::get('/tambahdataAkun', [DataAkunController::class, 'index'])->name('tambahdataAkun');
-Route::post('/deleteAkun/{id_akun}', 'DataAkunController@deleteAkun')->name('deleteDataAkun');
+Route::delete('/delete-data/{id_akun}', 'DataAkunController@deleteDataAkun')->name('deleteDataAkun');
+
 
 
 
