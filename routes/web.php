@@ -6,6 +6,7 @@ use App\Http\Controllers\DataAlatController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataAkunController;
 use App\Http\Controllers\KeluhanController;
+use App\Http\Controllers\DataPinjamController;
 use App\Models\User;
 
 
@@ -66,4 +67,13 @@ Route::post('/insertDataKeluhan', [KeluhanController::class, 'insertDataKeluhan'
 Route::get('/deleteDataKeluhan/{id_keluhan}', [KeluhanController::class, 'deleteDataKeluhan'])->name('deleteDataKeluhan');
 Route::get('/editDataKeluhan/{id_keluhan}', [KeluhanController::class, 'editDataKeluhan'])->name('editDataKeluhan');
 Route::post('/updateDataKeluhan/{id_keluhan}', [KeluhanController::class, 'updateDataKeluhan'])->name('updateDataKeluhan');
+Route::get('/akun.json', 'KeluhanController@akunJson')->name('akun.json');
+
+/* Data Pinjam */
+Route::get('/dataPinjam', [DataPinjamController::class, 'pinjam'])->name('keluhan');
+Route::get('/tambahDataPinjam', [DataPinjamController::class, 'tambahDataPinjam'])->name('tambahDataPinjam');
+Route::post('/insertDataPinjam', [DataPinjamController::class, 'insertDataPinjam'])->name('insertDataPinjam');
+Route::get('/deleteDataPinjam/{id_pinjam}', [DataPinjamController::class, 'deleteDataPinjam'])->name('deleteDataPinjam');
+Route::get('/editDataPinjam/{id_pinjam}', [DataPinjamController::class, 'editDataPinjam'])->name('editDataPinjam');
+Route::post('/updateDataPinjam/{id_pinjam}', [DataPinjamController::class, 'updateDataPinjam'])->name('updateDataPinjam');
 Route::get('/akun.json', 'KeluhanController@akunJson')->name('akun.json');
