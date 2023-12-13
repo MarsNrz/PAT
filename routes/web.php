@@ -22,7 +22,7 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('login',[
+    return view('home',[
     ]);
     
 })->name('home');
