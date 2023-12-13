@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\dataAkun;
+use App\Models\DataAkun;
 use Illuminate\Http\Request;
-use DataTables;
-use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use DataTables;
 
 class DataAkunController extends Controller
 {
     public function akun()
     {
-        $data = dataAkun::all(); 
+        $data = DataAkun::all(); 
         return view('dataAkun', compact('data')); 
     }
 
     public function getDataAkun(Request $request)
     {
         if ($request->ajax()) {
-            $data = dataAkun::latest()->get();
+            $data = DataAkun::latest()->get();
             
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -33,21 +32,6 @@ class DataAkunController extends Controller
                 ->make(true);
         }
     }
-    public function deleteDataAkun($id_akun)
-    {
-        // Log to check if the method is being called
-        \Log::info('Deleting data for ID: ' . $id_akun);
-    
-        $dataAkun = dataAkun::find($id_akun);
-    
-        if ($dataAkun) {
-            $dataAkun->delete();
-            return response()->json(['success' => true, 'message' => 'Data deleted successfully']);
-        } else {
-            return response()->json(['success' => false, 'message' => 'Data not found']);
-        }
-    }
-    
 
     public function tambahAkun()
     {
@@ -64,29 +48,36 @@ class DataAkunController extends Controller
                 'email' => 'required|email',
                 'password' => 'required',
                 'Fotoktm' => 'required',
-                
             ]);
+
+            $data = new DataAkun();
+            $data->Fotoprofil = $validatedData['Fotoprofil'];
+            $data->nama_lengkap = $validatedData['nama_lengkap'];
+            $data->nim = $validatedData['nim'];
+            $data->email = $validatedData['email'];
+            $data->password = bcrypt($validatedData['password']);
+            $data->Fotoktm = $validatedData['Fotoktm'];
+
+            $data->save();
+
+            // Logging informasi
+            Log::channel('single')->info('Akun ditambahkan: ' . $data->nama_lengkap);
+
+            return redirect()->route('akun')->with('success', 'Data berhasil ditambahkan');
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Handle validation errors
-            dd($e->errors());
+            Log::error('Validation error: ' . json_encode($e->errors()));
+            return redirect()->back()->with('error', 'Validasi gagal');
+        } catch (\Exception $e) {
+            // Log exception jika diperlukan
+            Log::error('Exception occurred: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan');
         }
-
-        $data = new dataAkun();
-        $data->Fotoprofil = $validatedData['Fotoprofil'];
-        $data->nama_lengkap = $validatedData['nama_lengkap'];
-        $data->nim = $validatedData['nim'];
-        $data->email = $validatedData['email'];
-        $data->password =($validatedData['password']);
-        $data->Fotoktm = ($validatedData['Fotoktm']);
-
-        $data->save();
-
-        return redirect()->route('akun')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function editAkun($id_akun)
     {
-        $data = dataAkun::find($id_akun);
+        $data = DataAkun::find($id_akun);
     
         if (!$data) {
             return redirect()->route('akun')->with('error', 'Data tidak ditemukan');
@@ -97,37 +88,78 @@ class DataAkunController extends Controller
 
     public function updateAkun(Request $request, $id_akun)
     {
-        $data = dataAkun::find($id_akun);
+        try {
+            $data = DataAkun::find($id_akun);
 
-        if (!$data) {
-            return redirect()->back()->with('error', 'Data tidak ditemukan');
+            if (!$data) {
+                return redirect()->back()->with('error', 'Data tidak ditemukan');
+            }
+
+            $validatedData = $request->validate([
+                'Fotoprofil' => 'required',
+                'nama_lengkap' => 'required',
+                'nim' => 'required|numeric',
+                'email' => 'required|email',
+                'password' => 'required',
+                'Fotoktm' => 'required',
+            ]);
+            $data->Fotoprofil = $validatedData['Fotoprofil'];
+            $data->nama_lengkap = $validatedData['nama_lengkap'];
+            $data->nim = $validatedData['nim'];
+            $data->email = $validatedData['email'];
+            $data->password = bcrypt($validatedData['password']);
+            $data->Fotoktm = $validatedData['Fotoktm'];
+
+            $data->save();
+
+            // Logging informasi
+            Log::channel('single')->info('Akun diperbarui: ' . $data->nama_lengkap);
+
+            return redirect()->route('akun')->with('success', 'Data berhasil diperbarui');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors
+            Log::error('Validation error: ' . json_encode($e->errors()));
+            return redirect()->back()->with('error', 'Validasi gagal');
+        } catch (\Exception $e) {
+            // Log exception jika diperlukan
+            Log::error('Exception occurred: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan');
         }
-
-        $validatedData = $request->validate([
-            'Fotoprofil' => 'required',
-            'nama_lengkap' => 'required',
-            'nim' => 'required|numeric',
-            'email' => 'required|email',
-            'password' => 'required',
-            'Fotoktm' => 'required',
-        ]);
-        $data->Fotoprofil = $validatedData['Fotoprofil'];
-        $data->nama_lengkap = $validatedData['nama_lengkap'];
-        $data->nim = $validatedData['nim'];
-        $data->email = $validatedData['email'];
-        $data->password = $validatedData['password'];
-        $data->Fotoktm = $validatedData['Fotoktm'];
-
-        $data->save();
-
-        return redirect()->route('akun')->with('success', 'Data berhasil diperbarui');
     }
-    public function login(){
+
+    public function deleteDataAkun($id_akun)
+    {
+        try {
+            // Log untuk memeriksa apakah metode ini dipanggil
+            Log::info('Menghapus data untuk ID: ' . $id_akun);
+
+            $dataAkun = DataAkun::find($id_akun);
+
+            if ($dataAkun) {
+                // Logging informasi
+                Log::channel('single')->info('Akun dihapus: ' . $dataAkun->nama_lengkap);
+
+                $dataAkun->delete();
+
+                return response()->json(['success' => true, 'message' => 'Data berhasil dihapus']);
+            } else {
+                return response()->json(['success' => false
+                , 'message' => 'Data tidak ditemukan']);
+            }
+        } catch (\Exception $e) {
+            // Log exception jika diperlukan
+            Log::error('Exception occurred: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Terjadi kesalahan']);
+        }
+    }
+
+    public function login()
+    {
         return view('login');
     }
+
     public function loginproses(Request $request)
     {
-       
         $credentials = $request->only('email', 'password');
 
         // Validate that email and password are not empty
@@ -139,17 +171,18 @@ class DataAkunController extends Controller
             'email.email' => 'Invalid email format!',
             'password.required' => 'Password is required!',
         ]);
+
         if (Auth::attempt($credentials)) {
             return redirect('home');
         }
-    
-        $user = User::where('email', $request->email);
-    
+
+        $user = DataAkun::where('email', $request->email)->first();
+
         if ($user) {
             // Incorrect password
             return redirect('/login')->with('login_error', 'Invalid password. Please try again!');
         }
-    
+
         // Incorrect email
         return redirect('/login')->with('login_error', 'Invalid email. Please try again!');
     }
