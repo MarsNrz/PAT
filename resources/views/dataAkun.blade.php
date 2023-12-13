@@ -8,6 +8,7 @@
     <title>Data Akun</title>
 </head>
 <body>
+    @include('navbar')
     <div class="container mt-4">
         <h1 class="text-center">Data Akun</h1> 
         <a href="/register" type="button" class="btn btn-success mb-3">Tambah Akun</a>

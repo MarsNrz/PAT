@@ -2,10 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataAlatController;
 use App\Http\Controllers\DataAkunController;
-use App\Http\Controllers\DataController;
 use App\Http\Controllers\KeluhanController;
 use App\Models\User;
 
@@ -27,13 +25,11 @@ Route::get('/', function () {
     
 })->name('home');
 
-// Route::get('/', function () {
-//     return view('dataAkun',[
-//         'users'=> User::get(),
-//     ]);
-    
-// })->name('home');
+Route::get('/navbar', function(){
+    return view('navbar',[]);
+})->name('navbar');
 
+/* Data Alat */
 Route::get('/home',[DataAlatController::class, 'home'])->name('home');
 
 Route::get('/dataAlat',[DataAlatController::class, 'index'])->name('Alat');
@@ -48,7 +44,7 @@ Route::get('/deleteDataAlat/{id_alat}', [DataAlatController::class, 'deleteDataA
 Route::get('/akun.json', 'DataAlatController@akunJson')->name('akun.json');
 
 
-
+/* Data Akun */
 Route::get('/dataAkun', [DataAkunController::class, 'akun'])->name('akun');
 Route::get('/dat/dataAkun', [DataAkunController::class, 'getDataAkun'])->name('dat.dataAkun');
 Route::get('/register', [DataAkunController::class, 'tambahAkun'])->name('tambahDataAkun');
@@ -59,10 +55,7 @@ Route::post('/update/{id_akun}', 'DataAkunController@updateAkun')->name('updateD
 Route::get('/tambahdataAkun', [DataAkunController::class, 'index'])->name('tambahdataAkun');
 Route::post('/deleteAkun/{id_akun}', 'DataAkunController@deleteAkun')->name('deleteDataAkun');
 
-
-
-
-
+/* Data Keluhan */
 Route::get('/dataKeluhan', [KeluhanController::class, 'keluhan'])->name('keluhan');
 Route::get('/tambahDataKeluhan', [KeluhanController::class, 'tambahDataKeluhan'])->name('tambahDataKeluhan');
 Route::post('/insertDataKeluhan', [KeluhanController::class, 'insertDataKeluhan'])->name('insertDataKeluhan');

@@ -8,7 +8,7 @@
     <title>Data Keluhan PAT</title>
 </head>
 <body>
-
+    @include('navbar')
     <div class="container mt-4">
         <a href="home">
             <img
