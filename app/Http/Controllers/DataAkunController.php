@@ -24,7 +24,7 @@ class DataAkunController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="'.route('editDataAkun', $row->id_akun).'" class="edit btn btn-success">Edit</a>';
+                    $actionBtn = '<a href="'.route('editAkun', $row->id_akun).'" class="edit btn btn-success">Edit</a>';
                     $actionBtn .= '<a href="javascript:void(0)" class="delete btn btn-danger" data-id="'.$row->id_akun.'">Delete</a>';
                     return $actionBtn;
                 })
@@ -86,7 +86,7 @@ class DataAkunController extends Controller
         return view('editDataAkun', compact('data'));
     }
 
-    public function updateAkun(Request $request, $id_akun)
+    public function updateDataAkun(Request $request, $id_akun)
     {
         try {
             $data = DataAkun::find($id_akun);
@@ -96,19 +96,15 @@ class DataAkunController extends Controller
             }
 
             $validatedData = $request->validate([
-                'Fotoprofil' => 'required',
                 'nama_lengkap' => 'required',
                 'nim' => 'required|numeric',
                 'email' => 'required|email',
                 'password' => 'required',
-                'Fotoktm' => 'required',
             ]);
-            $data->Fotoprofil = $validatedData['Fotoprofil'];
             $data->nama_lengkap = $validatedData['nama_lengkap'];
             $data->nim = $validatedData['nim'];
             $data->email = $validatedData['email'];
             $data->password = bcrypt($validatedData['password']);
-            $data->Fotoktm = $validatedData['Fotoktm'];
 
             $data->save();
 
