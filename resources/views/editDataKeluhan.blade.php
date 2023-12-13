@@ -7,7 +7,7 @@
     <title>Data Keluhan PAT</title>
 </head>
 <body>
-
+    @include('navbar')
     <div class="container mt-4">
         <h1 class="text-center">Edit Data Keluhan</h1>
         <div class="div row justify-content-center">

@@ -7,7 +7,7 @@
     <title>Data Barang PAT</title>
 </head>
 <body>
-
+    @include('navbar')
     <div class="container mt-4">
         <h1 class="text-center">Edit Data Akun</h1>
         <div class="div row justify-content-center">
