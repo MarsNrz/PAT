@@ -11,15 +11,7 @@
 <body>
     @include('navbar')
     <div class="container mt-4">
-        <a href="home">
-            <img
-              src="/image/home_.png"
-              alt="Description of the image"
-              class="img-fluid custom-image"
-              style="float: left; margin-left: -100px; width: 50px; height: auto;"
-              onclick="window.location.href='home';"
-              >
-          </a>
+    
         <h1 class="text-center">List Alat</h1>
         <a href="/tambahDataAlat" type="button" class="btn btn-success mb-3" onclick="tampilkanForm()">Tambah Alat</a>
         <table id="tabelAlat" class="table display">

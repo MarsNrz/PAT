@@ -164,8 +164,9 @@ class DataAkunController extends Controller
 
         // Validate that email and password are not empty
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+                'email' => 'required|email',
+                'password' => 'required',
+           
         ], [
             'email.required' => 'Email is required!',
             'email.email' => 'Invalid email format!',
@@ -182,8 +183,9 @@ class DataAkunController extends Controller
             // Incorrect password
             return redirect('/login')->with('login_error', 'Invalid password. Please try again!');
         }
-
+        
         // Incorrect email
         return redirect('/login')->with('login_error', 'Invalid email. Please try again!');
-    }
+        
+}
 }
