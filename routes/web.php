@@ -62,12 +62,13 @@ Route::post('/loginproses',[DataAkunController::class,'loginproses'])->name('log
 
 /* Data Keluhan */
 Route::get('/dataKeluhan', [KeluhanController::class, 'keluhan'])->name('keluhan');
-Route::get('/tambahDataKeluhan', [KeluhanController::class, 'tambahDataKeluhan'])->name('tambahDataKeluhan');
+Route::get('/dat/dataKeluhan', [KeluhanController::class, 'getDataKeluhan'])->name('dat.dataKeluhan');
 Route::post('/insertDataKeluhan', [KeluhanController::class, 'insertDataKeluhan'])->name('insertDataKeluhan');
-Route::get('/deleteDataKeluhan/{id_keluhan}', [KeluhanController::class, 'deleteDataKeluhan'])->name('deleteDataKeluhan');
-Route::get('/editDataKeluhan/{id_keluhan}', [KeluhanController::class, 'editDataKeluhan'])->name('editDataKeluhan');
-Route::post('/updateDataKeluhan/{id_keluhan}', [KeluhanController::class, 'updateDataKeluhan'])->name('updateDataKeluhan');
-Route::get('/akun.json', 'KeluhanController@akunJson')->name('akun.json');
+Route::get('/keluhan', 'KeluhanController@keluhan')->name('kkeluhan');
+Route::get('/edit/{id_keluhan}', 'KeluhanController@editKeluhan')->name('editKeluhan');
+Route::post('/update/{id_keluhan}', 'KeluhanController@updateKeluhan')->name('updateKeluhan');
+Route::get('/tambahDataKeluhan', [KeluhanController::class, 'tambahDataKeluhan'])->name('tambahDataKeluhan');
+Route::delete('/delete-data/{id_keluhan}', 'KeluhanController@deleteKeluhan')->name('deleteKeluhan');
 
 /* Data Pinjam */
 Route::get('/dataPinjam', [DataPinjamController::class, 'pinjam'])->name('pinjam');
