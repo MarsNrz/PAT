@@ -31,8 +31,10 @@ class DataPinjamController extends Controller
     public function updateDataPinjam(Request $request, $id_pinjam)
     {
         $data = dataPinjam::find($id_pinjam);
-        $data->deskripsi_keluhan = $request->input('deskripsi_keluhan');
         $data->id_akun = $request->input('id_akun');
+        $data->id_alat = $request->input('id_alat');
+        $data->waktu_peminjaman = $request->input('waktu_peminjaman');
+        $data->waktu_pengembalian = $request->input('waktu_pengembalian');
         $data->save();
         return redirect()->route('pinjam')->with('success', 'Data berhasil di Update');
     }

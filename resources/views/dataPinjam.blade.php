@@ -25,6 +25,7 @@
             <thead class="table-dark">
                 <tr>
                     <th>ID Pinjam</th>
+                    <th>ID Akun</th>
                     <th>ID Alat</th>
                     <th>Waktu Peminjaman</th>
                     <th>Waktu Pengembalian</th>
@@ -38,8 +39,10 @@
                 @foreach ($data as $item)
                 <tr>
                     <td>{{$no++}}</td>
-                    <td>{{$item->deskripsi_keluhan}}</td>
-                    <td>{{$item->id_pinjam}}</td>
+                    <td>{{$item->id_akun}}</td>
+                    <td>{{$item->id_alat}}</td>
+                    <td>{{$item->waktu_peminjaman}}</td>
+                    <td>{{$item->waktu_pengembalian}}</td>
                     <td>
                         <div>
                             <a href="/editDataPinjam/{{$item->id_pinjam}}" class="btn btn-light">Edit</a>

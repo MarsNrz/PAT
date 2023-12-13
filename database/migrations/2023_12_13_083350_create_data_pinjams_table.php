@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('data_pinjams', function (Blueprint $table) {
             $table->id('id_pinjam')->unique();
-            $table->foreignId('id_akun')->constrained('data_akuns');
-            $table->foreignId('id_alat')->constrained('data_alats');
-            $table->timestamp('waktu_peminjaman')->useCurrent();
-            $table->timestamp('waktu_pengembalian')->nullable();
+            $table->unsignedBigInteger('id_akun');
+            $table->foreign('id_akun')->references('id_akun')->on('data_akuns');
+            $table->unsignedBigInteger('id_alat');
+            $table->foreign('id_alat')->references('id_alat')->on('data_alats');
+            $table->time('waktu_peminjaman');
+            $table->time('waktu_pengembalian');
+            $table->timestamps();
         });
     }
 

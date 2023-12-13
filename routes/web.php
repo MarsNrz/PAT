@@ -70,7 +70,7 @@ Route::post('/updateDataKeluhan/{id_keluhan}', [KeluhanController::class, 'updat
 Route::get('/akun.json', 'KeluhanController@akunJson')->name('akun.json');
 
 /* Data Pinjam */
-Route::get('/dataPinjam', [DataPinjamController::class, 'pinjam'])->name('keluhan');
+Route::get('/dataPinjam', [DataPinjamController::class, 'pinjam'])->name('pinjam');
 Route::get('/tambahDataPinjam', [DataPinjamController::class, 'tambahDataPinjam'])->name('tambahDataPinjam');
 Route::post('/insertDataPinjam', [DataPinjamController::class, 'insertDataPinjam'])->name('insertDataPinjam');
 Route::get('/deleteDataPinjam/{id_pinjam}', [DataPinjamController::class, 'deleteDataPinjam'])->name('deleteDataPinjam');

@@ -19,7 +19,7 @@ class DataAkunSeeder extends Seeder
     public function run()
     {
         // Generate 1000 data menggunakan factory
-        DataAkun::factory(1000)->create();
+        //DataAkun::factory(1000)->create();
 
         // Tambahkan satu data manual
         DB::table('data_akuns')->insert([

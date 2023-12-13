@@ -39,8 +39,6 @@
                             <div class="mb-3">
                                 <label for="imageLink" class="form-label">Foto KTM</label>
                                 <input type="url" name="Fotoktm" class="form-control" id="imageLink" placeholder="Enter Google Drive Image Link">
-                            
-                                
                               
                             </div>
                             <a href="/login" style="color: black; font-weight:bold;">SIGN IN</a> 

@@ -37,7 +37,7 @@
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li><a class="dropdown-item" href="/dataAkun">Data Akun</a></li>
                   <li><a class="dropdown-item" href="/dataAlat">Data Alat</a></li>
-                  <li><a class="dropdown-item" href="#">Data Pinjam</a></li>
+                  <li><a class="dropdown-item" href="/dataPinjam">Data Pinjam</a></li>
                   <li><a class="dropdown-item" href="/dataKeluhan">Data Keluhan</a></li>
                 </ul>
               </li>
